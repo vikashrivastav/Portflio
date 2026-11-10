@@ -37,6 +37,11 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+});
+
 function requireAuth(req, res, next) {
   const user = current(req.cookies.portfolio_session);
 
